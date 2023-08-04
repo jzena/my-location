@@ -81,7 +81,7 @@ const App: React.FC = () => {
         </div>
       </div>
 
-      <div className='w-[90%] lg:w-[40%] mx-auto border rounded border-gray-100 flex justify-center mt-[20px] p-2 shadow shadow-lg'>
+      <div className='w-[92%] lg:w-[40%] mx-auto border rounded border-gray-100 flex justify-center mt-[20px] p-2 shadow shadow-lg'>
         {
           view === POSITION_VIEW ? 
           ( <Position error={error} location={location}/> ) :

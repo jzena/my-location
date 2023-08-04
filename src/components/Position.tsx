@@ -40,34 +40,34 @@ const Position = (props: IPosition) => {
         <div className='font-[300]'>Error: {error}</div>
       ) : location ? (
         <div className='w-full flex flex-col space-y-3'>
-          <div className='w-full flex space-x-2 lg:justify-center'>
-            <span className='w-[70px] lg:w-[70px] font-bold text-[13px]'>
+          <div className='w-[95%] mx-auto flex space-x-2 md:justify-center'>
+            <span className='w-[70px] min-w-[70px] font-bold text-[13px]'>
               Latitude:
             </span>
-            <span className='flex w-[245px] lg:!w-[250px] text-[13px] font-[300] border rounded px-2'>
+            <span className='flex grow md:grow-0 md:!w-[250px] text-[13px] font-[300] border rounded px-2'>
               {location.latitude}
             </span>
           </div>
 
-          <div className='w-full flex space-x-2 lg:justify-center'>
-            <span className='w-[70px] lg:w-[70px] font-bold text-[13px]'>
+          <div className='w-[95%] mx-auto flex space-x-2 md:justify-center'>
+            <span className='w-[70px] min-w-[70px] font-bold text-[13px]'>
               Longitude:
             </span>
-            <span className='flex w-[245px] lg:!w-[250px] text-[13px] font-[300] border rounded px-2'>
+            <span className='flex grow md:grow-0 md:!w-[250px] text-[13px] font-[300] border rounded px-2'>
               {location.longitude}
             </span>
           </div>
 
-          <div className='w-full flex space-x-2 lg:justify-center relative'>
-            <span className='w-[70px] lg:w-[70px] font-bold text-[13px]'>
+          <div className='w-[95%] mx-auto flex space-x-2 justify-start md:justify-center'>
+            <span className='w-[70px] min-w-[70px] font-bold text-[13px]'>
               Altitude:
             </span>
-            <span className={`${location.altitude ? 'w-[150px]' : 'w-[245px]'} flex lg:!w-[250px] text-[13px] font-[300] border rounded px-2`}>
+            <span className={`${location.altitude ? 'grow md:grow-0 md:w-[198px]' : 'grow md:grow-0 md:w-[250px]'} flex text-[13px] font-[300] border rounded px-2`}>
               {getAltitude()}
             </span>
             {location.altitude && (
               <button
-                className='rounded bg-black hover:bg-black/80 text-white text-[12px] font-[400] px-1 absolute right-[0px] h-[21.5px]
+                className='rounded bg-black hover:bg-black/80 text-white text-[12px] font-[400] px-1 h-[21.5px]
                 tracking-tighter flex items-center w-[44px] justify-center'
                 onClick={handleUnitClick}
               >
