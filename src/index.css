@@ -16,24 +16,22 @@ code {
     monospace;
 }
 
+/* circular progress */
 .spinner {
   animation: rotate 2s linear infinite;
   width: 16px;
   height: 16px;
 }
-
 .spinner .path {
   stroke: purple;
   stroke-linecap: round;
   animation: dash 1.5s ease-in-out infinite;
 }
-
 @keyframes rotate {
   100% {
     transform: rotate(1turn);
   }
 }
-
 @keyframes dash {
   0% {
     stroke-dasharray: 1, 50;
@@ -49,3 +47,30 @@ code {
   }
 }
 
+/* refresh icon */
+.refresh-icon {
+  width: 12px;
+  height: 12px;
+  border: 1.5px solid #fff;
+  border-color: #fff transparent #fff #fff;
+  border-radius: 50%;
+  position: relative;
+}
+.refresh-icon__arrow {
+  width: 4.5px;
+  height: 1.5px;
+  background-color: #fff;
+  position: absolute;
+  top: -1.5px;
+  right: -2px;
+  transform: rotate(45deg);
+}
+.refresh-icon__arrow2 {
+  width: 4.5px;
+  height: 1.5px;
+  background-color: #fff;
+  position: absolute;
+  top: 1px;
+  right: -2px;
+  transform: rotate(-45deg);
+}

@@ -19,7 +19,7 @@ const Position = (props: IPosition) => {
     const altitudeInMeters = location.altitude
     const altitudeInFeet = location.altitude * 3.28084
     return (
-      (location.altitude && unit === FEET) ? `${altitudeInMeters} m` :
+      (location.altitude && unit === FEET) ? `${altitudeInMeters.toFixed(2)} m` :
       (location.altitude && unit === METERS) ? `${altitudeInFeet.toFixed(2)} ft` :
       'Not available in your device'
     )
@@ -37,7 +37,7 @@ const Position = (props: IPosition) => {
   return (
     <div className='w-full my-[10px] px-[5px] flex justify-center'>
       {error ? (
-        <div>Error: {error}</div>
+        <div className='font-[300]'>Error: {error}</div>
       ) : location ? (
         <div className='w-full flex flex-col space-y-3'>
           <div className='w-full flex space-x-2 lg:justify-center'>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import LiveLocation from './components/LiveLocation';
 import Position from './components/Position';
 
@@ -16,12 +16,13 @@ const App: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [view, setView] = useState(POSITION_VIEW)
 
-  useEffect(() => {
+  const getGeolocation = useCallback( () => {
     if (!navigator.geolocation) {
       setError('Geolocation is not supported by your browser.');
     } else {
       navigator.geolocation.getCurrentPosition(
         (position) => {
+          setError(null)
           setLocation({
             latitude: position.coords.latitude,
             longitude: position.coords.longitude,
@@ -33,13 +34,31 @@ const App: React.FC = () => {
         }
       );
     }
-  }, []);
+  }, [])
 
+  useEffect(() => {
+    getGeolocation()
+  }, [getGeolocation]);
+
+  // handlers
   const handlePositionClick = () => {
     setView(POSITION_VIEW)
   }
   const handleLiveLocationClick = () => {
     setView(LIVE_LOCATION_VIEW)
+  }
+  const handleRefreshClick = () => {
+    getGeolocation()
+  }
+
+  // renders
+  const RefreshIcon = () => {
+    return (
+      <div className="refresh-icon">
+        <div className="refresh-icon__arrow"></div>
+        <div className="refresh-icon__arrow2"></div>
+      </div>
+    )
   }
 
   return (
@@ -65,15 +84,21 @@ const App: React.FC = () => {
       <div className='w-[90%] lg:w-[40%] mx-auto border rounded border-gray-100 flex justify-center mt-[20px] p-2 shadow shadow-lg'>
         {
           view === POSITION_VIEW ? 
-          ( <Position
-              error={error}
-              location={location}
-            /> ) :
+          ( <Position error={error} location={location}/> ) :
           ( <LiveLocation /> )
         }
       </div>
 
-
+      {view === POSITION_VIEW && (
+        <div className='w-[100%] flex justify-center mt-[20px] h-[32px] items-center'>
+          <button
+            className='py-[8px] px-[27px] bg-[purple] hover:bg-[purple]/80 border rounded active:shadow active:shadow-[purple]'
+            onClick={handleRefreshClick}
+          >
+            <RefreshIcon />
+          </button>
+        </div>
+      )}
     </div>
   )
 };
